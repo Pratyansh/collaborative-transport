@@ -1,3 +1,13 @@
+//2 tabs - open shipments, create shipment
+/*
+Open Shipment - 
+- Cards with Open truck details
+- - Open shipment cards - show space available
+Create Shipment
+- Form with Create shipment details
+*/
+
+
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 
@@ -25,7 +35,7 @@ class Landing extends Component {
                       borderRadius: "3px",
                       letterSpacing: "1.5px"
                     }}
-                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                    className="btn btn-large waves-effect waves-light hover:shadow-lg hover:bg-green-700 bg-green-600 accent-3"
                   >
                     Register
                   </Link>
@@ -38,7 +48,7 @@ class Landing extends Component {
                       borderRadius: "3px",
                       letterSpacing: "1.5px"
                     }}
-                    className="btn btn-large btn-flat waves-effect white black-text"
+                    className="btn btn-large btn-flat waves-effect bg-gray-300 hover:bg-gray-400 black-text"
                   >
                     Log In
                   </Link>

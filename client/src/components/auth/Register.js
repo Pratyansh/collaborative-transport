@@ -49,20 +49,21 @@ render() {
     const { errors } = this.state;
 return (
       <div className="container">
-        <div className="row">
-          <div className="col s8 offset-s2 flex">
-            <Link to="/" className="btn-flat waves-effect">
+        <div style={{ marginTop: "4rem" }} className="row">
+          <div className="col s8 offset-s2 flex flex-col">
+            {/* <Link to="/" className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
-            </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            </Link> */}
+            <div className="col s12" style={{ paddingLeft: "45.250px" }}>
               <h4>
-                <b>Register</b>
+                <b>Register</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+                Already have an account? <Link to="/login"><b>Log in</b></Link>
               </p>
             </div>
+            <div class="self-center w-3/4">
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
@@ -129,12 +130,13 @@ return (
                     marginTop: "1rem"
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hover:shadow-lg bg-green-600 accent-3"
+                  className="btn btn-large waves-effect waves-light hover:shadow-lg hover:bg-green-700 bg-green-600 accent-3"
                 >
                   Sign up
                 </button>
               </div>
             </form>
+            </div>
           </div>
         </div>
       </div>

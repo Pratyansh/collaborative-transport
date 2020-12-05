@@ -4,19 +4,29 @@ import PropTypes from "prop-types";
 
 class Tab extends Component {
     render() {
-        const {heading, icon, onClick} = this.props;
+        const {heading, icon, onClick, className} = this.props;
         return (
-        <div className="rounded-l flex flex-col">
-            <div className="bg-green-500">
-                {heading}
+        <button 
+            type="submit"
+            onClick={onClick}
+            className={`min-w-40 ${className}`}>
+            <div>
+            <div className={`rounded-sm shadow-md bg-green-500 p-2`} />
+            <div className="bg-green-400 p-8 border-8">
+            <i className="py-2 material-icons align-middle flex flex-col">{icon}</i>
+                <div className="pb-4">{heading}</div>
             </div>
-            <div></div>
-        </div>
+            <div className={`rounded-sm shadow-md bg-green-500 p-2`} />
+            </div>
+        </button>
         );
     }
 };
-Tab.PropTypes = {
+Tab.propTypes = {
     heading: PropTypes.string.isRequired,
-    icon: PropTypes.icon,
-    onClick: PropTypes.func.isRequired
+    icon: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    className: PropTypes.string
 }
+
+export default Tab;

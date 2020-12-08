@@ -1,20 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
 import Tab from "../widgets/Tab";
-class Dashboard extends Component {
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
-  onAddNewClick =()=> {
-    console.log("hello");
-  }
-render() {
-    const { user } = this.props.auth;
+import Form from "../widgets/Form";
+const Dashboard = (props) => {
+    const { user } = props.auth;
+    const [showModal, setShowModal] = useState(false);
+    const onCloseModal = () => {
+      setShowModal(false);
+    }
 return (
-      <div className="container">
         <div className="row">
           <div className="col s12 center-align">
             <h4>
@@ -27,37 +22,40 @@ return (
               </p>
             </h4>
             <div className="flex flex-row w-full justify-evenly py-20 text-2xl">
-            <Tab
-              icon="library_add"
-              heading="Add New Shipment"
-              onClick={() => {
-                console.log("hello");
-              }}
-              className="m-2 w-1/5"
-            />
-            <Tab
-              icon="list_alt"
-              heading="View Ongoing Shipments"
-              onClick={() => {
-                console.log("hello");
-              }}
-              className="m-2 w-1/5"
-            />
+              <Tab
+                icon="library_add"
+                heading="Add New Shipment"
+                onClick={() => {
+                  setShowModal(true);
+                }}
+                className="m-2 w-1/5"
+              />
+              <Tab
+                icon="list_alt"
+                heading="View Ongoing Shipments"
+                onClick={() => {
+                  console.log("hello");
+                }}
+                className="m-2 w-1/5"
+              />
             </div>
+            
           </div>
+          {showModal && 
+              <Form 
+                
+                onClose={onCloseModal}
+              />
+            }
         </div>
-      </div>
     );
-  }
 }
 Dashboard.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth
 });
 export default connect(
-  mapStateToProps,
-  { logoutUser }
+  mapStateToProps
 )(Dashboard);

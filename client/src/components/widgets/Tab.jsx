@@ -10,7 +10,7 @@ class Tab extends Component {
             type="submit"
             onClick={onClick}
             className={`min-w-40 ${className}`}>
-            <div>
+            <div className="w-full h-full">
             <div className={`relative rounded-sm shadow-md bg-green-500 p-2`} />
             <div className="bg-green-400 p-8 border-8">
             <i className="py-2 material-icons align-middle flex flex-col">{icon}</i>

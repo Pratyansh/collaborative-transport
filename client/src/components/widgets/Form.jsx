@@ -8,7 +8,7 @@ const Form = (props) => {
     >
       <div className="absolute inset-0 bg-opacity-50 bg-gray-400" />
       <div
-        className="fixed bg-white z-40 rounded-lg overflow-hidden p-4"
+        className="bg-white z-40 max-h-screen overflow-scroll rounded-lg p-4 m-4"
         style={{ width: "400px" }}
       >
         <form

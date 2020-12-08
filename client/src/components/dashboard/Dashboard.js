@@ -21,7 +21,7 @@ return (
                 <span style={{ fontFamily: "monospace" }}>truck-truck-go</span>
               </p>
             </h4>
-            <div className="flex flex-row w-full justify-evenly py-20 text-2xl">
+            <div className="flex flex-row flex-shrink w-full justify-evenly py-20 text-2xl md:text-sm">
               <Tab
                 icon="library_add"
                 heading="Add New Shipment"

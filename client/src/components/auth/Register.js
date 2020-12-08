@@ -55,7 +55,7 @@ return (
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
             </Link> */}
-            <div className="col s12" style={{ paddingLeft: "45.250px" }}>
+            <div className="col s12">
               <h4>
                 <b>Register</b> below
               </h4>

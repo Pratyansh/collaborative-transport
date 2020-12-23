@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useHistory} from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Tab from "../widgets/Tab";
@@ -9,6 +10,11 @@ const Dashboard = (props) => {
     const onCloseModal = () => {
       setShowModal(false);
     }
+    const history = useHistory();
+    const reroute = (path) => {
+    history.push(path);
+    }
+    
 return (
         <div className="row">
           <div className="col s12 center-align">
@@ -26,7 +32,7 @@ return (
                 icon="library_add"
                 heading="Add New Shipment"
                 onClick={() => {
-                  setShowModal(true);
+                  reroute('/add-shipment');
                 }}
                 className="m-2 w-1/5"
               />
@@ -34,7 +40,7 @@ return (
                 icon="list_alt"
                 heading="View Ongoing Shipments"
                 onClick={() => {
-                  console.log("hello");
+                  reroute('/shipment-list');
                 }}
                 className="m-2 w-1/5"
               />

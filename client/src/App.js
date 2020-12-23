@@ -12,6 +12,8 @@ import store from "./store";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
+import AddShipment from "./components/auth/AddShipment";
+import ShipmentList from "./components/auth/ShipmentList";
 import Register from "./components/auth/Register";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -47,6 +49,8 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exect path="/add-shipment" component={AddShipment} />
+              <PrivateRoute exect path="/shipment-list" component={ShipmentList} />
             </Switch>
           </div>
         </Router>

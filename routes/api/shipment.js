@@ -10,7 +10,7 @@ const Shipment = require("../../models/Shipment");
 // @route POST api/shipment/add
 // @desc Add shipment
 // @access Public
-router.post("/add-shipment", (req, res) => {
+router.post("/add", (req, res) => {
   // Form validation
 
   const { errors, isValid } = validateNewShipmentInput(req.body);

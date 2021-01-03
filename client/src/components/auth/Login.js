@@ -57,7 +57,7 @@ return (
                 Don't have an account? <Link to="/register"><b>Register</b></Link>
               </p>
             </div>
-            <div class="self-center w-3/4">
+            <div className="self-center w-3/4">
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input

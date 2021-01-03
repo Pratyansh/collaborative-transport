@@ -1,46 +1,47 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { addShipment } from "../../actions/authActions";
 import classnames from "classnames";
 class AddShipment extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      errors: {}
+      destination: "",
+      filledSpace: "",
+      availableSpace: "",
+      dispatchDate: "",
+      errors: {},
     };
   }
-  componentDidMount(){
-    if(!this.props.auth.isAuthenticated){
+  componentDidMount() {
+    if (!this.props.auth.isAuthenticated) {
       this.props.history.push("/");
     }
-  };
-componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
-    }
-if (nextProps.errors) {
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors,
       });
     }
   }
-onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
-onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
-const userData = {
-      email: this.state.email,
-      password: this.state.password
+    const shipmentData = {
+      destination: this.state.destination,
+      filledSpace: this.state.filledSpace,
+      availableSpace: this.state.availableSpace,
+      dispatchDate: this.state.dispatchDate,
     };
-this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+    this.props.addShipment(shipmentData, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   };
-render() {
+  render() {
     const { errors } = this.state;
-return (
+    return (
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2 flex flex-col">
@@ -49,57 +50,96 @@ return (
                 <b>Add Shipment</b> below
               </h4>
             </div>
-            <div class="self-center w-3/4">
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
-                  className={classnames("", {
-                    invalid: errors.email || errors.emailnotfound
-                  })}
-                />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">
-                  {errors.email}
-                  {errors.emailnotfound}
-                </span>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
-                />
-                <label htmlFor="password">Password</label>
-                <span className="red-text">
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
-              </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
-                  type="submit"
-                  className="btn btn-large waves-effect waves-light hover:shadow-lg hover:bg-green-700 bg-green-600 accent-3"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
+            <div className="self-center w-3/4">
+              <form noValidate onSubmit={this.onSubmit}>
+                {/* Destination field */}
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.destination}
+                    error={errors.destination}
+                    id="destination"
+                    type="text"
+                    className={classnames("", {
+                      invalid: errors.destination,
+                    })}
+                  />
+                  <label htmlFor="destination">Destination</label>
+                  <span className="red-text">{errors.destination}</span>
+                </div>
+                {/* Filled Space field */}
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.filledSpace}
+                    error={errors.filledSpace}
+                    id="filledSpace"
+                    type="text"
+                    className={classnames("", {
+                      invalid:
+                        errors.filledSpace || errors.filledSpaceincorrect,
+                    })}
+                  />
+                  <label htmlFor="password">Filled Space</label>
+                  <span className="red-text">
+                    {errors.filledSpace}
+                    {errors.filledSpaceincorrect}
+                  </span>
+                </div>
+                {/* Available Space field */}
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.availableSpace}
+                    error={errors.availableSpace}
+                    id="availableSpace"
+                    type="text"
+                    className={classnames("", {
+                      invalid:
+                        errors.availableSpace || errors.availableSpaceincorrect,
+                    })}
+                  />
+                  <label htmlFor="password">Available Space</label>
+                  <span className="red-text">
+                    {errors.availableSpace}
+                    {errors.availableSpaceincorrect}
+                  </span>
+                </div>
+                {/* Dispatch Date field */}
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.dispatchDate}
+                    error={errors.dispatchDate}
+                    id="dispatchDate"
+                    type="date"
+                    className={classnames("", {
+                      invalid:
+                        errors.dispatchDate || errors.dispatchDateincorrect,
+                    })}
+                  />
+                  <label htmlFor="password">Dispatch Date</label>
+                  <span className="red-text">
+                    {errors.dispatchDate}
+                    {errors.dispatchDateincorrect}
+                  </span>
+                </div>
+
+                <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                  <button
+                    style={{
+                      width: "150px",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem",
+                    }}
+                    type="submit"
+                    className="btn btn-large waves-effect waves-light hover:shadow-lg hover:bg-green-700 bg-green-600 accent-3"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -108,15 +148,12 @@ return (
   }
 }
 AddShipment.propTypes = {
-  loginUser: PropTypes.func.isRequired,
+  addShipment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
-export default connect(
-  mapStateToProps,
-  { loginUser }
-)(AddShipment);
+export default connect(mapStateToProps, { addShipment })(AddShipment);

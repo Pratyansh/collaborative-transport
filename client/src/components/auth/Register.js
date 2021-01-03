@@ -63,7 +63,7 @@ return (
                 Already have an account? <Link to="/login"><b>Log in</b></Link>
               </p>
             </div>
-            <div class="self-center w-3/4">
+            <div className="self-center w-3/4">
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input

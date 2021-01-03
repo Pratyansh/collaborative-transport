@@ -27,7 +27,7 @@ module.exports = function validateNewShipmentInput(data) {
   }
 
   // DispatchDate Checks
-  if (!moment(data.dispatchDate,"YYYY/MM/DD",true).isValid()) {
+  if (!moment(data.dispatchDate,"YYYY-MM-DD",true).isValid()) {
     errors.dispatchDate = "Enter a valid date";
   }
 

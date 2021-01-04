@@ -23,9 +23,12 @@ router.post("/add", (req, res) => {
       destination: req.body.destination,
       filledSpace: req.body.filledSpace,
       availableSpace: req.body.availableSpace,
-      dispatchDate: req.body.dispatchDate
+      dispatchDate: req.body.dispatchDate,
     });
-    return res.status(200).json(newShipment);
+    newShipment
+      .save()
+      .then((shipment) => res.json(shipment))
+      .catch((err) => console.log(err));
   }
 });
 

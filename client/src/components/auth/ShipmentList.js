@@ -42,7 +42,7 @@ this.props.loginUser(userData); // since we handle the redirect within our compo
 render() {
     const { errors } = this.state;
 return (
-      <div className="container">
+      <div className="">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2 flex flex-col">
             {/* <Link to="/" className="btn-flat waves-effect">

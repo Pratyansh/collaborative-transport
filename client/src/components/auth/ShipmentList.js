@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { listShipments } from "../../actions/authActions";
 import classnames from "classnames";
 class ShipmentList extends Component {
   constructor() {
@@ -17,6 +17,7 @@ class ShipmentList extends Component {
     if(!this.props.auth.isAuthenticated){
       this.props.history.push("/");
     }
+    this.props.listShipments();
   };
 componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {

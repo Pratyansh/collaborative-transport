@@ -74,3 +74,16 @@ export const addShipment = (shipmentData, history) => dispatch => {
         })
     })
 }
+
+export const listShipments = () => dispatch => {
+    axios.get("/api/shipment/list", shipmentData)
+    .then(res=> {
+        return res;
+    })
+    .catch(err => {
+        dispatch ({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    })
+}

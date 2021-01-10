@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import { USER_LOADING, SET_CURRENT_USER, GET_ERRORS } from "./types";
+import { USER_LOADING, SET_CURRENT_USER, GET_ERRORS, SET_ACTIVE_SHIPMENTS } from "./types";
 
 //Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -76,13 +76,19 @@ export const addShipment = (shipmentData, history) => dispatch => {
 }
 
 export const listShipments = () => dispatch => {
-    axios.get("/api/shipment/list", shipmentData)
+    axios.post("/api/shipment/list")
     .then(res=> {
-        return res;
+        console.log("hey");
+        console.log(res);
+        dispatch ({
+            type: SET_ACTIVE_SHIPMENTS,
+            payload: res.data
+        })
     })
     .catch(err => {
+        console.log("error",err);
         dispatch ({
-            type: GET_ERRORS,
+            type: USER_LOADING,
             payload: err.response.data
         })
     })

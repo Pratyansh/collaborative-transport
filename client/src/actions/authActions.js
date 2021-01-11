@@ -78,8 +78,6 @@ export const addShipment = (shipmentData, history) => dispatch => {
 export const listShipments = () => dispatch => {
     axios.post("/api/shipment/list")
     .then(res=> {
-        console.log("hey");
-        console.log(res);
         dispatch ({
             type: SET_ACTIVE_SHIPMENTS,
             payload: res.data

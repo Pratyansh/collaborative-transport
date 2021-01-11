@@ -1,7 +1,7 @@
 import { SET_ACTIVE_SHIPMENTS } from "../actions/types";
 
 const initialState = {
-  shipments: [],
+  shipments: null,
 };
 
 export default function (state = initialState, action) {

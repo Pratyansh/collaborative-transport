@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 
 class Tab extends Component {
     render() {
-        const {heading, icon, onClick, classNames} = this.props;
+        const {heading, icon, onClick, classes} = this.props;
         return (
         <button 
             type="submit"
             onClick={onClick}
-            className={`min-w-60 ${classNames && ""}`}>
+            className={`w-48 ${classes === "" ? classes : ""}`}>
             <div className="w-full h-full">
             <div className={`relative rounded-sm shadow-md bg-green-500 p-2`} />
             <div className="bg-green-400 p-8 border-8">
@@ -26,7 +26,7 @@ Tab.propTypes = {
     heading: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     onClick: PropTypes.func,
-    classNames: PropTypes.string = ""
+    classes: PropTypes.string = ""
 }
 
 export default Tab;

@@ -4,41 +4,28 @@ import { connect } from "react-redux";
 import { listShipments } from "../../actions/authActions";
 import Card from "../widgets/Card";
 class ShipmentList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      shipmentData: {},
-    };
+  constructor(props) {
+    super(props);
   }
   componentDidMount() {
+    console.log("SD=", this.props);
     if (!this.props.auth.isAuthenticated) {
       this.props.history.push("/");
     }
+
     this.props.listShipments();
-    console.log("yo");
-    this.setState({ shipmentData: this.props.shipments });
+    console.log(this.props.shipments);
   }
-  shouldComponentUpdate(prevProps) {
-    console.log("hello"); 
-    if (this.state.shipmentData == null) {
-      console.log("he77llo");
-      this.props.listShipments();
-      this.setState({ shipmentData: prevProps.shipments });
-    }
-    else{
-      console.log(this.state.shipmentData);
-    }
+
+  componentDidUpdate() {
+    console.log("Hey=",this.props);
   }
 
   render() {
-    const { shipmentData } = this.state;
-    let shipments = null;
-    if (shipmentData) {
-      shipments = shipmentData.shipments;
-    }
+    let shipments = this.props.shipments.shipments;
     return (
       <div id="shipmentList" className="">
-        {shipments && (
+        {shipments ? (
           <div style={{ marginTop: "4rem" }} className="row">
             <div className="col s8 offset-s2 flex flex-col">
               <div className="col s12">
@@ -66,6 +53,10 @@ class ShipmentList extends Component {
               </div>
             </div>
           </div>
+        ) : (
+          <>
+            <b>Show Loader</b>
+          </>
         )}
       </div>
     );
@@ -76,8 +67,11 @@ ShipmentList.propTypes = {
   auth: PropTypes.object.isRequired,
   shipments: PropTypes.object.isRequired,
 };
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  shipments: state.shipments,
-});
+const mapStateToProps = (state) => {
+  console.log("State=", state);
+  return {
+    auth: state.auth,
+    shipments: state.shipments,
+  };
+};
 export default connect(mapStateToProps, { listShipments })(ShipmentList);
